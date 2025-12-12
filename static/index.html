@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prove Voice Cloning - Live Demo</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎙️ Prove Voice Cloning</h1>
+            <p class="subtitle">Train your personal voice model in real-time</p>
+        </header>
+
+        <!-- Section 1: Record Your Voice -->
+        <section class="card" id="recording-section">
+            <h2>1. Record Your Voice</h2>
+            <p class="help-text">Record 10-20 second samples of yourself speaking naturally</p>
+
+            <div class="recorder-controls">
+                <button id="record-btn" class="btn btn-primary">
+                    <span class="icon">🎤</span> Start Recording
+                </button>
+                <button id="stop-btn" class="btn btn-secondary" disabled>
+                    <span class="icon">⏹️</span> Stop Recording
+                </button>
+                <button id="play-btn" class="btn btn-secondary" disabled>
+                    <span class="icon">▶️</span> Play Recording
+                </button>
+                <button id="upload-btn" class="btn btn-success" disabled>
+                    <span class="icon">📤</span> Upload to Train
+                </button>
+            </div>
+
+            <div id="recording-status" class="status-message"></div>
+            <div id="recording-timer" class="timer">00:00</div>
+        </section>
+
+        <!-- Section 2: Training Progress -->
+        <section class="card" id="progress-section">
+            <h2>2. Training Progress</h2>
+
+            <div class="progress-grid">
+                <div class="progress-item">
+                    <div class="progress-label">Clean Audio Collected</div>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div id="progress-text" class="progress-text">0s / 6s (0%)</div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">Current Profile</div>
+                    <div id="current-profile" class="badge badge-gray">No profile yet</div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">Training Status</div>
+                    <div id="training-status" class="badge badge-gray">Waiting for data</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Test Your Voice -->
+        <section class="card" id="synthesis-section">
+            <h2>3. Test Your Voice</h2>
+            <p class="help-text" id="synthesis-help">Upload at least 6s of audio to enable synthesis</p>
+
+            <div class="synthesis-controls">
+                <div class="input-group">
+                    <label for="synthesis-text">Text to speak:</label>
+                    <input
+                        type="text"
+                        id="synthesis-text"
+                        placeholder="Enter text to synthesize (max 200 characters)"
+                        maxlength="200"
+                        disabled
+                    >
+                </div>
+
+                <button id="synthesize-btn" class="btn btn-primary" disabled>
+                    <span class="icon">🔊</span> Generate Speech
+                </button>
+
+                <div id="synthesis-status" class="status-message"></div>
+
+                <div id="audio-players" class="audio-players" style="display: none;">
+                    <h4>Generated Audio:</h4>
+                    <div id="players-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Uploaded Samples -->
+        <section class="card" id="samples-section">
+            <h2>4. Uploaded Samples</h2>
+            <div id="samples-list" class="samples-list">
+                <p class="help-text">No samples uploaded yet</p>
+            </div>
+        </section>
+
+        <!-- Error/Success Messages -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="/js/recorder.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>
